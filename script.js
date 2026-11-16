@@ -1,1010 +1,206 @@
-/* =========================================
-   GROWFUND - INVESTMENT HUB
-   Main Stylesheet
-========================================= */
-
-/* ---------- ROOT VARIABLES ---------- */
-
-:root {
-    --primary: #246b50;
-    --primary-dark: #174b38;
-    --primary-light: #e8f3ed;
-
-    --background: #f8f9f6;
-    --surface: #ffffff;
-
-    --text: #182820;
-    --muted: #77827a;
-
-    --border: #e5eae5;
-    --success: #258653;
-    --warning: #e5a23b;
-    --error: #c93b3b;
-
-    --shadow: 0 12px 35px rgba(25, 55, 38, 0.07);
-
-    --radius: 16px;
-    --transition: all 0.3s ease;
-}
-
-
-/* ---------- GLOBAL RESET ---------- */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--background);
-    color: var(--text);
-    line-height: 1.6;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-button,
-input,
-select,
-textarea {
-    font: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-.container {
-    width: min(1180px, 90%);
-    margin: auto;
-}
-
-.section {
-    padding: 90px 0;
-}
-
-
-/* ---------- NOTIFICATION TOAST ---------- */
-
-.notification {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 1000;
-    display: none;
-    padding: 14px 20px;
-    border-radius: 10px;
-    background: var(--primary-dark);
-    color: white;
-    font-size: 13px;
-    font-weight: 600;
-    box-shadow: var(--shadow);
-}
-
-.notification.success {
-    background: var(--success);
-}
-
-.notification.error {
-    background: var(--error);
-}
-
-
-/* ---------- BUTTONS ---------- */
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    padding: 12px 21px;
-
-    border-radius: 9px;
-    border: 1px solid transparent;
-
-    font-weight: 600;
-    font-size: 14px;
-
-    transition: var(--transition);
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-}
-
-.btn-outline {
-    border-color: var(--border);
-    background: white;
-    color: var(--text);
-}
-
-.btn-outline:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.btn-light {
-    background: white;
-    color: var(--primary-dark);
-}
-
-.btn-dark {
-    background: #182820;
-    color: white;
-}
-
-
-/* ---------- HEADER ---------- */
-
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(15px);
-
-    border-bottom: 1px solid var(--border);
-}
-
-.navbar {
-    min-height: 76px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    font-size: 23px;
-    font-weight: 800;
-    letter-spacing: -1px;
-}
-
-.logo-icon {
-    width: 36px;
-    height: 36px;
-
-    display: grid;
-    place-items: center;
-
-    border-radius: 10px;
-
-    background: var(--primary);
-    color: white;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-}
-
-.nav-links a {
-    font-size: 14px;
-    font-weight: 600;
-    color: #66716a;
-    transition: var(--transition);
-}
-
-.nav-links a:hover {
-    color: var(--primary);
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-
-/* ---------- HERO SECTION ---------- */
-
-.hero {
-    padding: 100px 0;
-
-    background:
-        radial-gradient(
-            circle at 85% 20%,
-            #e2f0e5 0,
-            transparent 35%
-        ),
-        linear-gradient(120deg, #f8faf7, #eef5ef);
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    align-items: center;
-    gap: 75px;
-}
-
-.eyebrow {
-    display: inline-block;
-
-    color: var(--primary);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2px;
-
-    margin-bottom: 18px;
-}
-
-.hero h1 {
-    max-width: 650px;
-
-    font-size: clamp(42px, 5.5vw, 68px);
-    line-height: 1.08;
-
-    letter-spacing: -3px;
-    margin-bottom: 25px;
-}
-
-.hero-content > p {
-    max-width: 530px;
-
-    font-size: 17px;
-    color: var(--muted);
-
-    margin-bottom: 30px;
-}
-
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.hero-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 45px;
-
-    margin-top: 55px;
-}
-
-.hero-stats h3 {
-    font-size: 25px;
-    color: var(--primary);
-}
-
-.hero-stats p {
-    color: var(--muted);
-    font-size: 12px;
-}
-
-
-/* ---------- HERO FEATURE CARD ---------- */
-
-.hero-card {
-    background: white;
-
-    padding: 32px;
-
-    border: 1px solid var(--border);
-    border-radius: 22px;
-
-    box-shadow: var(--shadow);
-
-    transition: var(--transition);
-}
-
-.hero-card:hover {
-    transform: translateY(-5px);
-}
-
-.card-label {
-    display: inline-block;
-
-    color: var(--primary);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-
-    margin-bottom: 25px;
-}
-
-.business-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.business-heading h2 {
-    font-size: 23px;
-}
-
-.business-heading p {
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.business-avatar {
-    min-width: 48px;
-    height: 48px;
-
-    display: grid;
-    place-items: center;
-
-    background: #dcefe2;
-    color: var(--primary);
-
-    border-radius: 14px;
-    font-weight: 800;
-}
-
-.business-description {
-    color: var(--muted);
-    font-size: 14px;
-
-    margin: 22px 0;
-}
-
-.funding-details {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-
-    margin: 20px 0 12px;
-}
-
-.funding-details span {
-    display: block;
-    font-size: 11px;
-    color: var(--muted);
-}
-
-.funding-details h3,
-.funding-details strong {
-    font-size: 17px;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 8px;
-
-    overflow: hidden;
-    border-radius: 20px;
-
-    background: #e9eee9;
-}
-
-.progress {
-    height: 100%;
-    background: var(--primary);
-    border-radius: 20px;
-}
-
-.progress-text {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 10px;
-}
-
-
-/* ---------- FEATURES ---------- */
-
-.features {
-    padding: 60px 0;
-    background: white;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-}
-
-.feature-card {
-    padding: 15px;
-}
-
-.feature-card span {
-    color: var(--primary);
-    font-size: 12px;
-    font-weight: 800;
-}
-
-.feature-card h3 {
-    font-size: 20px;
-    margin: 12px 0;
-}
-
-.feature-card p {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-
-/* ---------- SECTION HEADINGS ---------- */
-
-.section-heading {
-    margin-bottom: 40px;
-}
-
-.section-heading h2 {
-    font-size: clamp(28px, 4vw, 39px);
-    letter-spacing: -1.5px;
-    margin-bottom: 12px;
-}
-
-.section-heading p {
-    max-width: 550px;
-    color: var(--muted);
-    font-size: 15px;
-}
-
-
-/* ---------- MARKETPLACE ---------- */
-
-.marketplace {
-    background: #f8faf7;
-}
-
-.marketplace-toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 30px;
-}
-
-.marketplace-toolbar input,
-.marketplace-toolbar select {
-    flex: 1;
-    min-width: 180px;
-
-    padding: 13px 15px;
-
-    border: 1px solid var(--border);
-    border-radius: 9px;
-
-    background: white;
-    outline: none;
-}
-
-.marketplace-toolbar input:focus,
-.marketplace-toolbar select:focus {
-    border-color: var(--primary);
-}
-
-.business-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
-
-/* ---------- BUSINESS CARDS ---------- */
-
-.business-card {
-    padding: 25px;
-
-    background: white;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.025);
-
-    transition: var(--transition);
-}
-
-.business-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow);
-}
-
-.business-card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 22px;
-}
-
-.pink {
-    background: #f8e5e9;
-    color: #a34360;
-}
-
-.green {
-    background: #e1eee0;
-    color: #427548;
-}
-
-.status {
-    padding: 5px 11px;
-
-    background: #e8f4eb;
-    color: var(--success);
-
-    border-radius: 20px;
-
-    font-size: 10px;
-    font-weight: 800;
-}
-
-.business-card h3 {
-    font-size: 21px;
-    margin-bottom: 5px;
-}
-
-.founder-name {
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 20px 0;
-}
-
-.tags span {
-    background: #f0f3f0;
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    font-size: 10px;
-    color: #66716a;
-}
-
-.business-card .btn {
-    width: 100%;
-    margin-top: 20px;
-}
-
-
-/* ---------- ROLE SECTION ---------- */
-
-.role-section {
-    padding: 80px 0;
-    background: white;
-}
-
-.role-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-}
-
-.role-card {
-    padding: 55px 40px;
-    border-radius: 20px;
-}
-
-.investor-card {
-    background: #e5f1e7;
-}
-
-.founder-card {
-    background: #e8e9e2;
-}
-
-.role-card h2 {
-    font-size: 35px;
-    margin-bottom: 15px;
-}
-
-.role-card p {
-    max-width: 400px;
-    color: #68756c;
-    margin-bottom: 30px;
-}
-
-
-/* ---------- FOUNDER DASHBOARD ---------- */
-
-.founder-dashboard {
-    background: #f8faf7;
-}
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 25px;
-    align-items: start;
-}
-
-.dashboard-metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-
-    margin-bottom: 25px;
-}
-
-.metric-card {
-    background: white;
-    border: 1px solid var(--border);
-
-    padding: 18px;
-    border-radius: 12px;
-}
-
-.metric-card span {
-    font-size: 11px;
-    color: var(--muted);
-}
-
-.metric-card h3 {
-    font-size: 25px;
-    color: var(--primary);
-    margin: 7px 0;
-}
-
-.metric-card p {
-    font-size: 10px;
-    color: var(--muted);
-}
-
-
-/* ---------- FORM ---------- */
-
-.form-card {
-    padding: 30px;
-
-    background: white;
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius);
-}
-
-.form-card h3 {
-    font-size: 22px;
-    margin-bottom: 25px;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-}
-
-.form-card label {
-    display: block;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    margin-bottom: 18px;
-}
-
-.form-card input,
-.form-card select,
-.form-card textarea {
-    width: 100%;
-
-    display: block;
-    margin-top: 8px;
-
-    padding: 12px 14px;
-
-    border: 1px solid var(--border);
-    border-radius: 8px;
-
-    outline: none;
-    background: white;
-
-    font-size: 13px;
-    transition: var(--transition);
-}
-
-.form-card input:focus,
-.form-card select:focus,
-.form-card textarea:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(36, 107, 80, 0.08);
-}
-
-.form-card textarea {
-    resize: vertical;
-}
-
-.form-card button {
-    margin-top: 10px;
-}
-
-
-/* ---------- DASHBOARD SIDEBAR ---------- */
-
-.dashboard-sidebar {
-    display: grid;
-    gap: 18px;
-}
-
-.advice-card,
-.preview-card {
-    padding: 25px;
-
-    background: white;
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius);
-}
-
-.advice-card {
-    background: #e8f2e9;
-}
-
-.advice-card h3,
-.preview-card h3 {
-    font-size: 18px;
-    margin-bottom: 12px;
-}
-
-.advice-card p,
-.preview-card p {
-    font-size: 13px;
-    color: var(--muted);
-}
-
-
-/* ---------- INTEREST SECTION ---------- */
-
-.interest-section {
-    background: white;
-}
-
-.interest-card {
-    padding: 25px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-}
-
-.interest-card h3 {
-    font-size: 18px;
-}
-
-.interest-card p {
-    color: var(--muted);
-    font-size: 13px;
-    max-width: 450px;
-}
-
-.interest-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-
-/* ---------- FOOTER ---------- */
-
-.footer {
-    padding: 55px 0;
-    background: #172c21;
-    color: white;
-}
-
-.footer-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 25px;
-}
-
-.footer .logo-icon {
-    background: white;
-    color: var(--primary);
-}
-
-.footer-content p,
-.footer-content > span {
-    color: #bdc9c0;
-    font-size: 12px;
-}
-
-
-/* ---------- ANIMATIONS ---------- */
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/* ==========================================
+   GROWFUND - JAVASCRIPT
+   Frontend functionality and Java API
+========================================== */
+
+const API_URL = "http://localhost:8080/api";
+
+// ==========================================
+// 1. 50 ENTREPRENEURS & INVESTORS DIRECTORY
+// ==========================================
+
+const growFundDirectory = [
+  { id: 1, name: "Amara Okafor", role: "Entrepreneur", company: "Daybreak Foods", sector: "Food & Beverage", stage: "Seed", location: "Oakland, CA" },
+  { id: 2, name: "Sofia Reyes", role: "Entrepreneur", company: "Lumen Care", sector: "Healthcare", stage: "Seed", location: "Boston, MA" },
+  { id: 3, name: "Theo Martin", role: "Entrepreneur", company: "Field Notes Studio", sector: "Creative Tools", stage: "Pre-seed", location: "Brooklyn, NY" },
+  { id: 4, name: "Vikram Mehta", role: "Investor", company: "Apex Horizon Ventures", sector: "Technology", stage: "Series A", location: "Mumbai, India" },
+  { id: 5, name: "Elena Rostova", role: "Investor", company: "Nordic Seed Fund", sector: "CleanTech", stage: "Pre-seed", location: "Stockholm, Sweden" },
+  { id: 6, name: "Liam O'Connor", role: "Entrepreneur", company: "BioHarvest Analytics", sector: "AgriTech", stage: "Seed", location: "Dublin, Ireland" },
+  { id: 7, name: "Priya Sharma", role: "Entrepreneur", company: "FinPulse India", sector: "FinTech", stage: "Seed", location: "Bengaluru, India" },
+  { id: 8, name: "Marcus Vance", role: "Investor", company: "Vance Capital Partners", sector: "Technology", stage: "Series A", location: "San Francisco, CA" },
+  { id: 9, name: "Chloe Dubois", role: "Entrepreneur", company: "Atelier Vert", sector: "Sustainable Fashion", stage: "Pre-seed", location: "Paris, France" },
+  { id: 10, name: "Kenji Sato", role: "Entrepreneur", company: "NeuroCraft AI", sector: "Technology", stage: "Seed", location: "Tokyo, Japan" },
+  { id: 11, name: "Rachel Greenwald", role: "Investor", company: "Horizon Angel Network", sector: "Consumer Goods", stage: "Pre-seed", location: "Chicago, IL" },
+  { id: 12, name: "David Kim", role: "Entrepreneur", company: "CloudScale Systems", sector: "Technology", stage: "Series A", location: "Seattle, WA" },
+  { id: 13, name: "Zara Al-Mansoor", role: "Entrepreneur", company: "Oasis Desalination", sector: "CleanTech", stage: "Seed", location: "Dubai, UAE" },
+  { id: 14, name: "Lucas Silva", role: "Investor", company: "Latitude South Ventures", sector: "Technology", stage: "Seed", location: "São Paulo, Brazil" },
+  { id: 15, name: "Hannah Abbott", role: "Entrepreneur", company: "SwiftFleet Logistics", sector: "Supply Chain", stage: "Pre-seed", location: "Austin, TX" },
+  { id: 16, name: "Tariq Jameel", role: "Entrepreneur", company: "MedSecure Ledger", sector: "Healthcare", stage: "Seed", location: "Lahore, Pakistan" },
+  { id: 17, name: "Oliver Thorne", role: "Investor", company: "Ironwood Syndicate", sector: "Industrial Tech", stage: "Series A", location: "London, UK" },
+  { id: 18, name: "Maya Lin", role: "Entrepreneur", company: "CodeSpark Academy", sector: "EdTech", stage: "Pre-seed", location: "Vancouver, Canada" },
+  { id: 19, name: "Gabriel Santos", role: "Entrepreneur", company: "AgroDrone Solutions", sector: "AgriTech", stage: "Seed", location: "Belo Horizonte, Brazil" },
+  { id: 20, name: "Dr. Aris Thorne", role: "Investor", company: "BioHealth Angels", sector: "Healthcare", stage: "Seed", location: "Zurich, Switzerland" },
+  { id: 21, name: "Nadia Petrova", role: "Entrepreneur", company: "CyberShield Labs", sector: "Technology", stage: "Series A", location: "Berlin, Germany" },
+  { id: 22, name: "Ethan Huntley", role: "Entrepreneur", company: "QuantumRoute AI", sector: "Technology", stage: "Seed", location: "Boston, MA" },
+  { id: 23, name: "Fatimah Al-Farsi", role: "Investor", company: "Gulf Crescent Capital", sector: "FinTech", stage: "Series A", location: "Riyadh, Saudi Arabia" },
+  { id: 24, name: "Julian Vance", role: "Entrepreneur", company: "SolarGrid Dynamics", sector: "CleanTech", stage: "Pre-seed", location: "Denver, CO" },
+  { id: 25, name: "Clara Dupont", role: "Entrepreneur", company: "Lumière Optics", sector: "Hardware", stage: "Seed", location: "Lyon, France" },
+  { id: 26, name: "Sanjay Patel", role: "Investor", company: "Gujarat Growth Fund", sector: "Technology", stage: "Seed", location: "Ahmedabad, India" },
+  { id: 27, name: "Beatrice Wong", role: "Entrepreneur", company: "ZenWork Spaces", sector: "Future of Work", stage: "Pre-seed", location: "Singapore" },
+  { id: 28, name: "Mateo Morales", role: "Entrepreneur", company: "CafeStream Analytics", sector: "Food & Beverage", stage: "Pre-seed", location: "Bogotá, Colombia" },
+  { id: 29, name: "Ingrid Lindqvist", role: "Investor", company: "Baltic Ventures", sector: "Consumer Tech", stage: "Pre-seed", location: "Helsinki, Finland" },
+  { id: 30, name: "Ryan O'Neill", role: "Entrepreneur", company: "AquaPure Technologies", sector: "CleanTech", stage: "Seed", location: "Melbourne, Australia" },
+  { id: 31, name: "Aisha Bello", role: "Entrepreneur", company: "AgriPay Africa", sector: "FinTech", stage: "Seed", location: "Lagos, Nigeria" },
+  { id: 32, name: "Hiroshi Tanaka", role: "Investor", company: "Tokyo Tech Syndicate", sector: "Technology", stage: "Series A", location: "Tokyo, Japan" },
+  { id: 33, name: "Samantha Brooks", role: "Entrepreneur", company: "EcoPackaging Solutions", sector: "CleanTech", stage: "Seed", location: "Toronto, Canada" },
+  { id: 34, name: "Devendra Joshi", role: "Entrepreneur", company: "SkillForge India", sector: "EdTech", stage: "Pre-seed", location: "Pune, India" },
+  { id: 35, name: "Catherine Moreau", role: "Investor", company: "Paris Angel Fund", sector: "Consumer Goods", stage: "Pre-seed", location: "Paris, France" },
+  { id: 36, name: "Liam Vance", role: "Entrepreneur", company: "NextGen Robotics", sector: "Robotics", stage: "Series A", location: "Pittsburgh, PA" },
+  { id: 37, name: "Zara Patel", role: "Entrepreneur", company: "HealthFirst Telemed", sector: "Healthcare", stage: "Seed", location: "London, UK" },
+  { id: 38, name: "Marcus Sterling", role: "Investor", company: "Sterling & Co. Wealth", sector: "Technology", stage: "Series A", location: "New York, NY" },
+  { id: 39, name: "Freja Johansen", role: "Entrepreneur", company: "Nordic BioThreads", sector: "Sustainable Fashion", stage: "Pre-seed", location: "Copenhagen, Denmark" },
+  { id: 40, name: "Carlos Mendez", role: "Entrepreneur", company: "Ruta Logistics", sector: "Supply Chain", stage: "Seed", location: "Mexico City, Mexico" },
+  { id: 41, name: "Ananya Roy", role: "Investor", company: "Bengal Angel Network", sector: "EdTech", stage: "Pre-seed", location: "Kolkata, India" },
+  { id: 42, name: "Benjamin Cole", role: "Entrepreneur", company: "AeroDeliver Drones", sector: "Supply Chain", stage: "Seed", location: "Seattle, WA" },
+  { id: 43, name: "Youssef Ben Ali", role: "Entrepreneur", company: "Maghreb Solar", sector: "CleanTech", stage: "Seed", location: "Casablanca, Morocco" },
+  { id: 44, name: "Jessica Taylor", role: "Investor", company: "Pacific Dawn Ventures", sector: "Healthcare", stage: "Series A", location: "San Diego, CA" },
+  { id: 45, name: "Noah Wright", role: "Entrepreneur", company: "OmniRetail POS", sector: "Retail Tech", stage: "Seed", location: "Nashville, TN" },
+  { id: 46, name: "Meera Nair", role: "Entrepreneur", company: "UrbanFarm Systems", sector: "AgriTech", stage: "Pre-seed", location: "Kochi, India" },
+  { id: 47, name: "Dmitri Ivanov", role: "Investor", company: "Red Square Capital", sector: "Technology", stage: "Series A", location: "Tallinn, Estonia" },
+  { id: 48, name: "Kaito Yamamoto", role: "Entrepreneur", company: "RoboChef Kitchens", sector: "Food & Beverage", stage: "Seed", location: "Osaka, Japan" },
+  { id: 49, name: "Chloe Bennett", role: "Entrepreneur", company: "CleanWave Water", sector: "CleanTech", stage: "Pre-seed", location: "Sydney, Australia" },
+  { id: 50, name: "Arthur Pendelton", role: "Investor", company: "Heritage Seed Partners", sector: "Consumer Goods", stage: "Seed", location: "Edinburgh, UK" }
+];
+
+// ==========================================
+// 2. NOTIFICATION SYSTEM
+// ==========================================
+
+function showNotification(message, type = "success") {
+    let notification = document.getElementById("notification");
+
+    if (!notification) {
+        notification = document.createElement("div");
+        notification.id = "notification";
+        notification.className = "notification";
+        document.body.appendChild(notification);
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    notification.textContent = message;
+    notification.className = "notification " + type;
+    notification.style.display = "block";
+
+    clearTimeout(notification.timer);
+    notification.timer = setTimeout(() => {
+        notification.style.display = "none";
+    }, 3500);
 }
 
-.hero-content,
-.hero-card {
-    animation: fadeUp 0.7s ease both;
+// ==========================================
+// 3. DISPLAY FOUNDERS & INVESTORS CARDS
+// ==========================================
+
+function renderDirectory(items) {
+    const businessContainer = document.getElementById("businesses");
+    if (!businessContainer) {
+        console.error("Element #businesses not found in HTML!");
+        return;
+    }
+
+    businessContainer.innerHTML = "";
+
+    if (!items || items.length === 0) {
+        businessContainer.innerHTML = `<p style="grid-column: 1 / -1; text-align: center; color: #77827a; padding: 40px;">No matching founders or investors found.</p>`;
+        return;
+    }
+
+    items.forEach((item) => {
+        const card = document.createElement("article");
+        card.className = "business-card dynamic-business-card";
+
+        const isInvestor = item.role === "Investor";
+        const avatarClass = isInvestor ? "pink" : "green";
+        const initials = item.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase();
+
+        card.innerHTML = `
+            <div class="business-card-top">
+                <div class="business-avatar ${avatarClass}">${initials}</div>
+                <span class="status">${item.role}</span>
+            </div>
+            <h3>${item.name}</h3>
+            <p class="founder-name"><strong>Company:</strong> ${item.company}</p>
+            <p class="business-description"><strong>Sector:</strong> ${item.sector} · <strong>Location:</strong> ${item.location}</p>
+            <div class="tags">
+                <span>${item.sector}</span>
+                <span>${item.stage}</span>
+            </div>
+            <div class="funding-details">
+                <div>
+                    <span>Role</span>
+                    <strong>${item.role}</strong>
+                </div>
+                <div>
+                    <span>Stage</span>
+                    <strong>${item.stage}</strong>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary connect-btn">
+                Connect with ${item.name}
+            </button>
+        `;
+
+        const connectBtn = card.querySelector(".connect-btn");
+        connectBtn.addEventListener("click", () => {
+            showNotification(`Connection request sent to ${item.name} (${item.company}).`);
+        });
+
+        businessContainer.appendChild(card);
+    });
 }
 
+// ==========================================
+// 4. SEARCH & FILTER LOGIC
+// ==========================================
 
-/* ---------- TABLET RESPONSIVE ---------- */
+function filterDirectory() {
+    const searchInput = document.getElementById("businessSearch");
+    const roleFilter = document.getElementById("roleFilter");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const stageFilter = document.getElementById("stageFilter");
 
-@media (max-width: 1000px) {
+    const search = searchInput ? searchInput.value.toLowerCase().trim() : "";
+    const role = roleFilter ? roleFilter.value.toLowerCase() : "";
+    const category = categoryFilter ? categoryFilter.value.toLowerCase() : "";
+    const stage = stageFilter ? stageFilter.value.toLowerCase() : "";
 
-    .hero-grid {
-        grid-template-columns: 1fr 0.9fr;
-        gap: 30px;
-    }
+    const filtered = growFundDirectory.filter(item => {
+        const matchesSearch = 
+            item.name.toLowerCase().includes(search) || 
+            item.company.toLowerCase().includes(search) || 
+            item.location.toLowerCase().includes(search) || 
+            item.sector.toLowerCase().includes(search);
 
-    .business-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+        const matchesRole = !role || item.role.toLowerCase() === role;
+        const matchesCategory = !category || item.sector.toLowerCase().includes(category);
+        const matchesStage = !stage || item.stage.toLowerCase() === stage;
 
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
+        return matchesSearch && matchesRole && matchesCategory && matchesStage;
+    });
 
-    .dashboard-metrics {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
+    renderDirectory(filtered);
 }
 
+// ==========================================
+// 5. INITIALIZE APPLICATION SAFELY
+// ==========================================
 
-/* ---------- MOBILE RESPONSIVE ---------- */
+function initApp() {
+    console.log("Initializing GrowFund Directory...");
+    renderDirectory(growFundDirectory);
 
-@media (max-width: 700px) {
+    const searchInput = document.getElementById("businessSearch");
+    const roleFilter = document.getElementById("roleFilter");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const stageFilter = document.getElementById("stageFilter");
 
-    .container {
-        width: 92%;
-    }
-
-    .section {
-        padding: 60px 0;
-    }
-
-    .navbar {
-        flex-wrap: wrap;
-        padding: 15px 0;
-    }
-
-    .nav-links {
-        order: 3;
-        width: 100%;
-
-        justify-content: center;
-        gap: 18px;
-    }
-
-    .nav-links a {
-        font-size: 11px;
-    }
-
-    .nav-actions {
-        gap: 6px;
-    }
-
-    .nav-actions .btn {
-        padding: 9px 11px;
-        font-size: 11px;
-    }
-
-    .hero {
-        padding: 65px 0;
-    }
-
-    .hero-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-        font-size: 43px;
-        letter-spacing: -2px;
-    }
-
-    .hero-content > p {
-        font-size: 14px;
-    }
-
-    .hero-stats {
-        gap: 25px;
-    }
-
-    .hero-stats h3 {
-        font-size: 21px;
-    }
-
-    .hero-card {
-        padding: 24px;
-    }
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .business-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .role-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .role-card {
-        padding: 35px 25px;
-    }
-
-    .role-card h2 {
-        font-size: 29px;
-    }
-
-    .dashboard-metrics {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .form-card {
-        padding: 20px;
-    }
-
-    .interest-card {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .footer-content {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
+    if (searchInput) searchInput.addEventListener("input", filterDirectory);
+    if (roleFilter) roleFilter.addEventListener("change", filterDirectory);
+    if (categoryFilter) categoryFilter.addEventListener("change", filterDirectory);
+    if (stageFilter) stageFilter.addEventListener("change", filterDirectory);
 }
 
-
-/* ---------- SMALL MOBILE ---------- */
-
-@media (max-width: 380px) {
-
-    .hero h1 {
-        font-size: 35px;
-    }
-
-    .nav-links {
-        gap: 10px;
-    }
-
-    .nav-links a {
-        font-size: 10px;
-    }
-
-    .dashboard-metrics {
-        grid-template-columns: 1fr;
-    }
-
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initApp);
+} else {
+    initApp();
 }
-```[cite: 2]
