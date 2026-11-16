@@ -1,13 +1,5 @@
-/* ==========================================
-   GROWFUND - JAVASCRIPT
-   Frontend functionality and Java API
-========================================== */
 
 const API_URL = "http://localhost:8080/api";
-
-// ==========================================
-// 1. 50 ENTREPRENEURS & INVESTORS DIRECTORY
-// ==========================================
 
 const growFundDirectory = [
   { id: 1, name: "Amara Okafor", role: "Entrepreneur", company: "Daybreak Foods", sector: "Food & Beverage", stage: "Seed", location: "Oakland, CA" },
@@ -62,9 +54,6 @@ const growFundDirectory = [
   { id: 50, name: "Arthur Pendelton", role: "Investor", company: "Heritage Seed Partners", sector: "Consumer Goods", stage: "Seed", location: "Edinburgh, UK" }
 ];
 
-// ==========================================
-// 2. NOTIFICATION SYSTEM
-// ==========================================
 
 function showNotification(message, type = "success") {
     let notification = document.getElementById("notification");
@@ -85,10 +74,6 @@ function showNotification(message, type = "success") {
         notification.style.display = "none";
     }, 3500);
 }
-
-// ==========================================
-// 3. DISPLAY FOUNDERS & INVESTORS CARDS
-// ==========================================
 
 function renderDirectory(items) {
     const businessContainer = document.getElementById("businesses");
@@ -148,10 +133,6 @@ function renderDirectory(items) {
     });
 }
 
-// ==========================================
-// 4. SEARCH & FILTER LOGIC
-// ==========================================
-
 function filterDirectory() {
     const searchInput = document.getElementById("businessSearch");
     const roleFilter = document.getElementById("roleFilter");
@@ -179,10 +160,6 @@ function filterDirectory() {
 
     renderDirectory(filtered);
 }
-
-// ==========================================
-// 5. INITIALIZE APPLICATION SAFELY
-// ==========================================
 
 function initApp() {
     console.log("Initializing GrowFund Directory...");
