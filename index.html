@@ -3,473 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GrowFund connects ambitious small businesses with thoughtful investors.">
     <title>GrowFund | Investment Hub</title>
-    <style>
-        :root {
-            --primary: #10b981;
-            --primary-dark: #059669;
-            --bg-dark: #0f172a;
-            --surface-dark: #1e293b;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --accent-pink: #f43f5e;
-            --accent-green: #10b981;
-            --radius: 16px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            min-height: 100vh;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(15, 23, 42, 0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 76px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 22px;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            display: grid;
-            place-items: center;
-            background: var(--primary);
-            color: #0f172a;
-            border-radius: 10px;
-            font-weight: 900;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .hero {
-            padding: 95px 0 75px 0;
-            background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.1) 0, transparent 50%);
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 780px;
-            margin: 0 auto;
-        }
-
-        .eyebrow {
-            color: var(--primary);
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 5.5vw, 62px);
-            line-height: 1.1;
-            margin-bottom: 22px;
-            color: #ffffff;
-            letter-spacing: -1.5px;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 17px;
-            margin-bottom: 35px;
-            line-height: 1.6;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 50px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 13px 26px;
-            border-radius: 9px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: #0f172a;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border-color: var(--border-color);
-            color: #ffffff;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .hero-stats h3 {
-            font-size: 28px;
-            color: var(--primary);
-            margin-bottom: 4px;
-        }
-
-        .hero-stats p {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        .roles-section {
-            padding: 70px 0;
-            background: rgba(30, 41, 59, 0.35);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .roles-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .role-box {
-            background: var(--surface-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 45px 38px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .role-box:hover {
-            transform: translateY(-5px);
-        }
-
-        .role-box.investor-box:hover {
-            border-color: var(--accent-pink);
-        }
-
-        .role-box.entrepreneur-box:hover {
-            border-color: var(--primary);
-        }
-
-        .role-badge {
-            display: inline-block;
-            width: fit-content;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-        }
-
-        .investor-box .role-badge {
-            background: rgba(244, 63, 94, 0.15);
-            color: var(--accent-pink);
-        }
-
-        .entrepreneur-box .role-badge {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--primary);
-        }
-
-        .role-box h2 {
-            font-size: 32px;
-            color: #ffffff;
-            margin-bottom: 14px;
-        }
-
-        .role-box p {
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 28px;
-        }
-
-        .btn-pink {
-            background: var(--accent-pink);
-            color: #ffffff;
-        }
-
-        .btn-pink:hover {
-            background: #e11d48;
-            transform: translateY(-2px);
-        }
-
-        .marketplace {
-            padding: 80px 0 90px 0;
-        }
-
-        .section-heading {
-            margin-bottom: 35px;
-        }
-
-        .section-heading h2 {
-            font-size: 32px;
-            margin-bottom: 8px;
-            color: #ffffff;
-        }
-
-        .section-heading p {
-            color: var(--text-muted);
-            font-size: 15px;
-        }
-
-        .marketplace-toolbar {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 35px;
-            background: var(--surface-dark);
-            padding: 20px;
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
-        }
-
-        .marketplace-toolbar input,
-        .marketplace-toolbar select {
-            width: 100%;
-            padding: 12px 16px;
-            background: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: white;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .marketplace-toolbar input:focus,
-        .marketplace-toolbar select:focus {
-            border-color: var(--primary);
-        }
-
-        .business-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 24px;
-        }
-
-        .business-card {
-            background: var(--surface-dark);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 24px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .business-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 30px -10px rgba(16, 185, 129, 0.15);
-            border-color: var(--primary);
-        }
-
-        .business-card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 18px;
-        }
-
-        .business-avatar {
-            width: 45px;
-            height: 45px;
-            display: grid;
-            place-items: center;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .business-avatar.green {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-green);
-        }
-
-        .business-avatar.pink {
-            background: rgba(244, 63, 94, 0.15);
-            color: var(--accent-pink);
-        }
-
-        .status {
-            padding: 5px 12px;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--primary);
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .status.investor-badge {
-            background: rgba(244, 63, 94, 0.12);
-            color: var(--accent-pink);
-        }
-
-        .business-card h3 {
-            font-size: 20px;
-            margin-bottom: 6px;
-            color: #ffffff;
-        }
-
-        .founder-name {
-            color: var(--text-muted);
-            font-size: 13px;
-            margin-bottom: 12px;
-        }
-
-        .business-description {
-            color: #cbd5e1;
-            font-size: 13.5px;
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .tags span {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        .funding-details {
-            display: flex;
-            justify-content: space-between;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
-            margin-bottom: 20px;
-        }
-
-        .funding-details span {
-            font-size: 11px;
-            color: var(--text-muted);
-            display: block;
-        }
-
-        .funding-details strong {
-            font-size: 14px;
-            color: #ffffff;
-        }
-
-        .notification {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 1000;
-            display: none;
-            padding: 14px 22px;
-            border-radius: 10px;
-            background: var(--primary);
-            color: #0f172a;
-            font-weight: 700;
-            font-size: 13.5px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        @media (max-width: 900px) {
-            .roles-grid {
-                grid-template-columns: 1fr;
-            }
-            .marketplace-toolbar {
-                grid-template-columns: 1fr;
-            }
-            .hero-stats {
-                gap: 30px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header class="header">
         <div class="container navbar">
             <a href="#home" class="logo">
@@ -478,31 +16,36 @@
             </a>
             <nav class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#roles">Roles</a>
-                <a href="#marketplace">Directory</a>
+                <a href="#marketplace">Marketplace</a>
+                <a href="#businesses">Businesses</a>
+                <a href="#about">About</a>
             </nav>
+            <div class="nav-actions">
+                <a href="#investor" class="btn btn-outline">Investor</a>
+                <a href="#founder" class="btn btn-primary">I'm a Founder</a>
+            </div>
         </div>
     </header>
 
     <main>
         <section class="hero" id="home">
-            <div class="container">
+            <div class="container hero-grid">
                 <div class="hero-content">
-                    <span class="eyebrow">Capital With A Pulse</span>
+                    <span class="eyebrow">CAPITAL WITH A PULSE</span>
                     <h1>Back the people building what's next.</h1>
-                    <p>GrowFund brings ambitious builders, innovative startups, and high-growth ventures into one ecosystem with clarity and direct opportunity.</p>
+                    <p>GrowFund brings ambitious small businesses and thoughtful investors into the same room with context, care and a clear next step.</p>
                     <div class="hero-buttons">
-                        <a href="#marketplace" class="btn btn-primary">Explore Directory →</a>
-                        <a href="#roles" class="btn btn-outline">Choose Your Path</a>
+                        <a href="#marketplace" class="btn btn-primary">Explore Businesses →</a>
+                        <a href="#founder" class="btn btn-outline">Build Your Business</a>
                     </div>
                     <div class="hero-stats">
                         <div>
-                            <h3>50+</h3>
-                            <p>Verified Profiles</p>
+                            <h3>500+</h3>
+                            <p>Businesses</p>
                         </div>
                         <div>
-                            <h3>18+</h3>
-                            <p>Global Sectors</p>
+                            <h3>1,200+</h3>
+                            <p>Investors</p>
                         </div>
                         <div>
                             <h3>₹25Cr+</h3>
@@ -510,236 +53,328 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="roles-section" id="roles">
-            <div class="container">
-                <div class="roles-grid">
-                    
-                    <div class="role-box investor-box">
+                <div class="hero-card">
+                    <span class="card-label">FEATURED OPPORTUNITY</span>
+                    <div class="business-heading">
                         <div>
-                            <span class="role-badge">For Capital Partners</span>
-                            <h2>I'm an Investor.</h2>
-                            <p>Discover vetted founders with a strong point of view, scalable business models, and clear traction across global markets.</p>
+                            <h2>Daybreak Foods</h2>
+                            <p>Amara Okafor · Oakland, CA</p>
                         </div>
-                        <button type="button" class="btn btn-pink" onclick="filterByRole('Investor')">
-                            Explore Investors & Deals →
-                        </button>
+                        <div class="business-avatar">DF</div>
                     </div>
-
-                    <div class="role-box entrepreneur-box">
+                    <p class="business-description">Breakfast sauces with a big point of view and a growing place at the family table.</p>
+                    <div class="funding-details">
                         <div>
-                            <span class="role-badge">For Founders & Builders</span>
-                            <h2>I'm an Entrepreneur.</h2>
-                            <p>Put your venture in front of strategic angels and venture funds who have the context and capital to back your vision.</p>
+                            <span>Raised</span>
+                            <h3>₹4,20,000</h3>
                         </div>
-                        <button type="button" class="btn btn-primary" onclick="filterByRole('Entrepreneur')">
-                            Explore Entrepreneurs →
-                        </button>
+                        <div>
+                            <span>Goal</span>
+                            <h3>₹6,50,000</h3>
+                        </div>
                     </div>
-
+                    <div class="progress-bar">
+                        <div class="progress" style="width:65%"></div>
+                    </div>
+                    <p class="progress-text">65% of funding goal reached</p>
                 </div>
             </div>
         </section>
 
-        <section class="marketplace container" id="marketplace">
-            <div class="section-heading">
-                <span class="eyebrow" style="margin-bottom: 5px;">DIRECTORY HUB</span>
-                <h2>Discover Growing Businesses & Investors</h2>
-                <p>Filter through 50 entrepreneurs and active capital partners worldwide.</p>
+        <section class="features" id="about">
+            <div class="container feature-grid">
+                <article class="feature-card">
+                    <span>01</span>
+                    <h3>Real Context</h3>
+                    <p>Discover the people behind businesses, not just their pitch decks.</p>
+                </article>
+                <article class="feature-card">
+                    <span>02</span>
+                    <h3>Mutual Fit</h3>
+                    <p>Find ambitious businesses and investors who share common interests.</p>
+                </article>
+                <article class="feature-card">
+                    <span>03</span>
+                    <h3>Warm Connections</h3>
+                    <p>Move from curiosity to meaningful business relationships.</p>
+                </article>
             </div>
+        </section>
 
-            <div class="marketplace-toolbar">
-                <input type="search" id="businessSearch" placeholder="🔍 Search founder, investor, or company...">
-                
-                <select id="roleFilter">
-                    <option value="">All Roles (Founders & Investors)</option>
-                    <option value="Entrepreneur">Entrepreneurs / Founders</option>
-                    <option value="Investor">Investors</option>
-                </select>
+        <section class="marketplace section" id="marketplace">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">EXPLORE OPPORTUNITIES</span>
+                    <h2>Discover Growing Businesses</h2>
+                    <p>Explore businesses looking for investment and new opportunities.</p>
+                </div>
 
-                <select id="categoryFilter">
-                    <option value="">All Sectors</option>
-                    <option value="Food & Beverage">Food & Beverage</option>
-                    <option value="Healthcare">Healthcare</option>
-                    <option value="Technology">Technology</option>
-                    <option value="CleanTech">CleanTech</option>
-                    <option value="FinTech">FinTech</option>
-                    <option value="AgriTech">AgriTech</option>
-                    <option value="EdTech">EdTech</option>
-                    <option value="Supply Chain">Supply Chain</option>
-                </select>
+                <div class="marketplace-toolbar">
+                    <input type="search" id="businessSearch" placeholder="Search businesses...">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="Food">Food & Beverage</option>
+                        <option value="Health">Healthcare</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Creative">Creative Tools</option>
+                    </select>
+                    <select id="stageFilter">
+                        <option value="">All Stages</option>
+                        <option value="Pre-seed">Pre-seed</option>
+                        <option value="Seed">Seed</option>
+                        <option value="Series A">Series A</option>
+                    </select>
+                    <select id="sortFilter">
+                        <option value="">Sort By (DSA)</option>
+                        <option value="goal-asc">Funding Goal: Low to High</option>
+                        <option value="goal-desc">Funding Goal: High to Low</option>
+                        <option value="name-asc">Name: A to Z</option>
+                    </select>
+                </div>
 
-                <select id="stageFilter">
-                    <option value="">All Stages</option>
-                    <option value="Pre-seed">Pre-seed</option>
-                    <option value="Seed">Seed</option>
-                    <option value="Series A">Series A</option>
-                </select>
+                <div class="business-grid" id="businesses">
+                    <article class="business-card" data-goal="650000" data-name="Daybreak Foods">
+                        <div class="business-card-top">
+                            <div class="business-avatar">DF</div>
+                            <span class="status">Raising</span>
+                        </div>
+                        <h3>Daybreak Foods</h3>
+                        <p class="founder-name">Amara Okafor · Food & Beverage</p>
+                        <p class="business-description">A thoughtful pantry brand creating innovative breakfast sauces.</p>
+                        <div class="tags">
+                            <span>Consumer</span>
+                            <span>Climate-positive</span>
+                        </div>
+                        <div class="funding-details">
+                            <div>
+                                <span>Raised</span>
+                                <strong>₹4,20,000</strong>
+                            </div>
+                            <div>
+                                <span>Goal</span>
+                                <strong>₹6,50,000</strong>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width:65%"></div>
+                        </div>
+                        <button class="btn btn-primary connect-btn">Connect with Founder</button>
+                    </article>
+
+                    <article class="business-card" data-goal="400000" data-name="Lumen Care">
+                        <div class="business-card-top">
+                            <div class="business-avatar pink">LC</div>
+                            <span class="status">Raising</span>
+                        </div>
+                        <h3>Lumen Care</h3>
+                        <p class="founder-name">Sofia Reyes · Healthcare</p>
+                        <p class="business-description">Healthcare navigation that helps families find the right care.</p>
+                        <div class="tags">
+                            <span>Healthcare</span>
+                            <span>B2B2C</span>
+                        </div>
+                        <div class="funding-details">
+                            <div>
+                                <span>Raised</span>
+                                <strong>₹2,75,000</strong>
+                            </div>
+                            <div>
+                                <span>Goal</span>
+                                <strong>₹4,00,000</strong>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width:69%"></div>
+                        </div>
+                        <button class="btn btn-primary connect-btn">Connect with Founder</button>
+                    </article>
+
+                    <article class="business-card" data-goal="850000" data-name="Field Notes Studio">
+                        <div class="business-card-top">
+                            <div class="business-avatar green">FN</div>
+                            <span class="status">Raising</span>
+                        </div>
+                        <h3>Field Notes Studio</h3>
+                        <p class="founder-name">Theo Martin · Creative Tools</p>
+                        <p class="business-description">A smarter workspace for independent creative teams.</p>
+                        <div class="tags">
+                            <span>SaaS</span>
+                            <span>Creator Economy</span>
+                        </div>
+                        <div class="funding-details">
+                            <div>
+                                <span>Raised</span>
+                                <strong>₹6,10,000</strong>
+                            </div>
+                            <div>
+                                <span>Goal</span>
+                                <strong>₹8,50,000</strong>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width:72%"></div>
+                        </div>
+                        <button class="btn btn-primary connect-btn">Connect with Founder</button>
+                    </article>
+                </div>
             </div>
+        </section>
 
-            <div class="business-grid" id="businesses"></div>
+        <section class="role-section" id="investor">
+            <div class="container role-grid">
+                <div class="role-card investor-card">
+                    <span class="eyebrow">FOR INVESTORS</span>
+                    <h2>I'm an Investor.</h2>
+                    <p>Discover businesses with a point of view, a plan and a reason to care.</p>
+                    <a href="#marketplace" class="btn btn-light">Explore Marketplace →</a>
+                </div>
+
+                <div class="role-card founder-card" id="founder">
+                    <span class="eyebrow">FOR FOUNDERS</span>
+                    <h2>I'm Building.</h2>
+                    <p>Put your work in front of people who have the context to believe in it.</p>
+                    <a href="#business-profile" class="btn btn-dark">Create Business Profile →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section founder-dashboard" id="business-profile">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">FOUNDER WORKSPACE</span>
+                    <h2>Make Your Next Chapter Legible.</h2>
+                    <p>Create a clear business profile to attract the right investors.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-main">
+                        <div class="dashboard-metrics">
+                            <div class="metric-card">
+                                <span>Profile Strength</span>
+                                <h3>82%</h3>
+                                <p>A few details to sharpen</p>
+                            </div>
+                            <div class="metric-card">
+                                <span>Investor Interest</span>
+                                <h3>12</h3>
+                                <p>People are looking</p>
+                            </div>
+                            <div class="metric-card">
+                                <span>Connections</span>
+                                <h3>05</h3>
+                                <p>Conversations in motion</p>
+                            </div>
+                            <div class="metric-card">
+                                <span>Your Goal</span>
+                                <h3>₹6.5L</h3>
+                                <p>Seed funding</p>
+                            </div>
+                        </div>
+
+                        <div class="form-card">
+                            <h3>Create Your Business Profile</h3>
+                            <form id="businessForm">
+                                <div class="form-grid">
+                                    <label>
+                                        Business Name
+                                        <input type="text" name="businessName" placeholder="Enter business name" required>
+                                    </label>
+                                    <label>
+                                        Founder Name
+                                        <input type="text" name="founderName" placeholder="Enter founder name" required>
+                                    </label>
+                                    <label>
+                                        Category
+                                        <input type="text" name="category" placeholder="Food, Technology, Healthcare" required>
+                                    </label>
+                                    <label>
+                                        Location
+                                        <input type="text" name="location" placeholder="City, Country" required>
+                                    </label>
+                                    <label>
+                                        Current Revenue
+                                        <input type="text" name="revenue" placeholder="e.g. ₹42k MRR">
+                                    </label>
+                                    <label>
+                                        Growth Signal
+                                        <input type="text" name="growth" placeholder="e.g. +18% monthly">
+                                    </label>
+                                    <label>
+                                        Funding Stage
+                                        <select name="stage" required>
+                                            <option value="">Select Stage</option>
+                                            <option>Pre-seed</option>
+                                            <option>Seed</option>
+                                            <option>Series A</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        Funding Goal (₹)
+                                        <input type="number" name="fundingGoal" min="1" placeholder="500000" required>
+                                    </label>
+                                </div>
+                                <label>
+                                    Business Description
+                                    <textarea name="description" rows="5" placeholder="Describe your business and what makes it special..." required></textarea>
+                                </label>
+                                <label>
+                                    Business Tags
+                                    <input type="text" name="tags" placeholder="B2B, Climate, Founder-led">
+                                </label>
+                                <button type="submit" class="btn btn-primary">Create Business Profile</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <aside class="dashboard-sidebar">
+                        <div class="advice-card">
+                            <h3>Your Story Matters.</h3>
+                            <p>Explain the customer, the problem and the change your business creates. Investors want to understand your vision.</p>
+                        </div>
+                        <div class="preview-card">
+                            <h3>Profile Preview</h3>
+                            <p>Your business profile will appear here.</p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="section interest-section">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">CONNECTIONS</span>
+                    <h2>Investor Interest</h2>
+                    <p>Manage people interested in your business.</p>
+                </div>
+
+                <article class="interest-card">
+                    <div>
+                        <h3>Investor Introduction</h3>
+                        <p>I would love to learn more about your business and your future plans.</p>
+                    </div>
+                    <span class="status">Pending</span>
+                    <div class="interest-actions">
+                        <button class="btn btn-primary">Open Conversation</button>
+                        <button class="btn btn-outline">Review Later</button>
+                    </div>
+                </article>
+            </div>
         </section>
     </main>
 
-    <div id="notification" class="notification"></div>
+    <footer class="footer">
+        <div class="container footer-content">
+            <a href="#home" class="logo">
+                <span class="logo-icon">G</span>
+                <span>growfund</span>
+            </a>
+            <p>Building meaningful connections between businesses and investors.</p>
+            <span>© 2026 GrowFund. All rights reserved.</span>
+        </div>
+    </footer>
 
-    <script>
-        const growFundDirectory = [
-          { id: 1, name: "Amara Okafor", role: "Entrepreneur", company: "Daybreak Foods", sector: "Food & Beverage", stage: "Seed", location: "Oakland, CA" },
-          { id: 2, name: "Sofia Reyes", role: "Entrepreneur", company: "Lumen Care", sector: "Healthcare", stage: "Seed", location: "Boston, MA" },
-          { id: 3, name: "Theo Martin", role: "Entrepreneur", company: "Field Notes Studio", sector: "Creative Tools", stage: "Pre-seed", location: "Brooklyn, NY" },
-          { id: 4, name: "Vikram Mehta", role: "Investor", company: "Apex Horizon Ventures", sector: "Technology", stage: "Series A", location: "Mumbai, India" },
-          { id: 5, name: "Elena Rostova", role: "Investor", company: "Nordic Seed Fund", sector: "CleanTech", stage: "Pre-seed", location: "Stockholm, Sweden" },
-          { id: 6, name: "Liam O'Connor", role: "Entrepreneur", company: "BioHarvest Analytics", sector: "AgriTech", stage: "Seed", location: "Dublin, Ireland" },
-          { id: 7, name: "Priya Sharma", role: "Entrepreneur", company: "FinPulse India", sector: "FinTech", stage: "Seed", location: "Bengaluru, India" },
-          { id: 8, name: "Marcus Vance", role: "Investor", company: "Vance Capital Partners", sector: "Technology", stage: "Series A", location: "San Francisco, CA" },
-          { id: 9, name: "Chloe Dubois", role: "Entrepreneur", company: "Atelier Vert", sector: "Sustainable Fashion", stage: "Pre-seed", location: "Paris, France" },
-          { id: 10, name: "Kenji Sato", role: "Entrepreneur", company: "NeuroCraft AI", sector: "Technology", stage: "Seed", location: "Tokyo, Japan" },
-          { id: 11, name: "Rachel Greenwald", role: "Investor", company: "Horizon Angel Network", sector: "Consumer Goods", stage: "Pre-seed", location: "Chicago, IL" },
-          { id: 12, name: "David Kim", role: "Entrepreneur", company: "CloudScale Systems", sector: "Technology", stage: "Series A", location: "Seattle, WA" },
-          { id: 13, name: "Zara Al-Mansoor", role: "Entrepreneur", company: "Oasis Desalination", sector: "CleanTech", stage: "Seed", location: "Dubai, UAE" },
-          { id: 14, name: "Lucas Silva", role: "Investor", company: "Latitude South Ventures", sector: "Technology", stage: "Seed", location: "São Paulo, Brazil" },
-          { id: 15, name: "Hannah Abbott", role: "Entrepreneur", company: "SwiftFleet Logistics", sector: "Supply Chain", stage: "Pre-seed", location: "Austin, TX" },
-          { id: 16, name: "Tariq Jameel", role: "Entrepreneur", company: "MedSecure Ledger", sector: "Healthcare", stage: "Seed", location: "Lahore, Pakistan" },
-          { id: 17, name: "Oliver Thorne", role: "Investor", company: "Ironwood Syndicate", sector: "Industrial Tech", stage: "Series A", location: "London, UK" },
-          { id: 18, name: "Maya Lin", role: "Entrepreneur", company: "CodeSpark Academy", sector: "EdTech", stage: "Pre-seed", location: "Vancouver, Canada" },
-          { id: 19, name: "Gabriel Santos", role: "Entrepreneur", company: "AgroDrone Solutions", sector: "AgriTech", stage: "Seed", location: "Belo Horizonte, Brazil" },
-          { id: 20, name: "Dr. Aris Thorne", role: "Investor", company: "BioHealth Angels", sector: "Healthcare", stage: "Seed", location: "Zurich, Switzerland" },
-          { id: 21, name: "Nadia Petrova", role: "Entrepreneur", company: "CyberShield Labs", sector: "Technology", stage: "Series A", location: "Berlin, Germany" },
-          { id: 22, name: "Ethan Huntley", role: "Entrepreneur", company: "QuantumRoute AI", sector: "Technology", stage: "Seed", location: "Boston, MA" },
-          { id: 23, name: "Fatimah Al-Farsi", role: "Investor", company: "Gulf Crescent Capital", sector: "FinTech", stage: "Series A", location: "Riyadh, Saudi Arabia" },
-          { id: 24, name: "Julian Vance", role: "Entrepreneur", company: "SolarGrid Dynamics", sector: "CleanTech", stage: "Pre-seed", location: "Denver, CO" },
-          { id: 25, name: "Clara Dupont", role: "Entrepreneur", company: "Lumière Optics", sector: "Hardware", stage: "Seed", location: "Lyon, France" },
-          { id: 26, name: "Sanjay Patel", role: "Investor", company: "Gujarat Growth Fund", sector: "Technology", stage: "Seed", location: "Ahmedabad, India" },
-          { id: 27, name: "Beatrice Wong", role: "Entrepreneur", company: "ZenWork Spaces", sector: "Future of Work", stage: "Pre-seed", location: "Singapore" },
-          { id: 28, name: "Mateo Morales", role: "Entrepreneur", company: "CafeStream Analytics", sector: "Food & Beverage", stage: "Pre-seed", location: "Bogotá, Colombia" },
-          { id: 29, name: "Ingrid Lindqvist", role: "Investor", company: "Baltic Ventures", sector: "Consumer Tech", stage: "Pre-seed", location: "Helsinki, Finland" },
-          { id: 30, name: "Ryan O'Neill", role: "Entrepreneur", company: "AquaPure Technologies", sector: "CleanTech", stage: "Seed", location: "Melbourne, Australia" },
-          { id: 31, name: "Aisha Bello", role: "Entrepreneur", company: "AgriPay Africa", sector: "FinTech", stage: "Seed", location: "Lagos, Nigeria" },
-          { id: 32, name: "Hiroshi Tanaka", role: "Investor", company: "Tokyo Tech Syndicate", sector: "Technology", stage: "Series A", location: "Tokyo, Japan" },
-          { id: 33, name: "Samantha Brooks", role: "Entrepreneur", company: "EcoPackaging Solutions", sector: "CleanTech", stage: "Seed", location: "Toronto, Canada" },
-          { id: 34, name: "Devendra Joshi", role: "Entrepreneur", company: "SkillForge India", sector: "EdTech", stage: "Pre-seed", location: "Pune, India" },
-          { id: 35, name: "Catherine Moreau", role: "Investor", company: "Paris Angel Fund", sector: "Consumer Goods", stage: "Pre-seed", location: "Paris, France" },
-          { id: 36, name: "Liam Vance", role: "Entrepreneur", company: "NextGen Robotics", sector: "Robotics", stage: "Series A", location: "Pittsburgh, PA" },
-          { id: 37, name: "Zara Patel", role: "Entrepreneur", company: "HealthFirst Telemed", sector: "Healthcare", stage: "Seed", location: "London, UK" },
-          { id: 38, name: "Marcus Sterling", role: "Investor", company: "Sterling & Co. Wealth", sector: "Technology", stage: "Series A", location: "New York, NY" },
-          { id: 39, name: "Freja Johansen", role: "Entrepreneur", company: "Nordic BioThreads", sector: "Sustainable Fashion", stage: "Pre-seed", location: "Copenhagen, Denmark" },
-          { id: 40, name: "Carlos Mendez", role: "Entrepreneur", company: "Ruta Logistics", sector: "Supply Chain", stage: "Seed", location: "Mexico City, Mexico" },
-          { id: 41, name: "Ananya Roy", role: "Investor", company: "Bengal Angel Network", sector: "EdTech", stage: "Pre-seed", location: "Kolkata, India" },
-          { id: 42, name: "Benjamin Cole", role: "Entrepreneur", company: "AeroDeliver Drones", sector: "Supply Chain", stage: "Seed", location: "Seattle, WA" },
-          { id: 43, name: "Youssef Ben Ali", role: "Entrepreneur", company: "Maghreb Solar", sector: "CleanTech", stage: "Seed", location: "Casablanca, Morocco" },
-          { id: 44, name: "Jessica Taylor", role: "Investor", company: "Pacific Dawn Ventures", sector: "Healthcare", stage: "Series A", location: "San Diego, CA" },
-          { id: 45, name: "Noah Wright", role: "Entrepreneur", company: "OmniRetail POS", sector: "Retail Tech", stage: "Seed", location: "Nashville, TN" },
-          { id: 46, name: "Meera Nair", role: "Entrepreneur", company: "UrbanFarm Systems", sector: "AgriTech", stage: "Pre-seed", location: "Kochi, India" },
-          { id: 47, name: "Dmitri Ivanov", role: "Investor", company: "Red Square Capital", sector: "Technology", stage: "Series A", location: "Tallinn, Estonia" },
-          { id: 48, name: "Kaito Yamamoto", role: "Entrepreneur", company: "RoboChef Kitchens", sector: "Food & Beverage", stage: "Seed", location: "Osaka, Japan" },
-          { id: 49, name: "Chloe Bennett", role: "Entrepreneur", company: "CleanWave Water", sector: "CleanTech", stage: "Pre-seed", location: "Sydney, Australia" },
-          { id: 50, name: "Arthur Pendelton", role: "Investor", company: "Heritage Seed Partners", sector: "Consumer Goods", stage: "Seed", location: "Edinburgh, UK" }
-        ];
-
-        function showNotification(message) {
-            const notification = document.getElementById("notification");
-            notification.textContent = message;
-            notification.style.display = "block";
-            clearTimeout(notification.timer);
-            notification.timer = setTimeout(() => {
-                notification.style.display = "none";
-            }, 3000);
-        }
-
-        function filterByRole(selectedRole) {
-            const roleDropdown = document.getElementById("roleFilter");
-            roleDropdown.value = selectedRole;
-            filterDirectory();
-            document.getElementById("marketplace").scrollIntoView({ behavior: "smooth" });
-        }
-
-        function renderDirectory(items) {
-            const container = document.getElementById("businesses");
-            container.innerHTML = "";
-
-            if (!items || items.length === 0) {
-                container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #94a3b8; padding: 40px;">No matching records found.</p>`;
-                return;
-            }
-
-            items.forEach((item) => {
-                const card = document.createElement("article");
-                card.className = "business-card";
-
-                const isInvestor = item.role === "Investor";
-                const avatarClass = isInvestor ? "pink" : "green";
-                const badgeClass = isInvestor ? "investor-badge" : "";
-                const initials = item.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase();
-
-                card.innerHTML = `
-                    <div>
-                        <div class="business-card-top">
-                            <div class="business-avatar ${avatarClass}">${initials}</div>
-                            <span class="status ${badgeClass}">${item.role}</span>
-                        </div>
-                        <h3>${item.name}</h3>
-                        <p class="founder-name">🏢 ${item.company}</p>
-                        <p class="business-description">Active in <strong>${item.sector}</strong> space based in <strong>${item.location}</strong>.</p>
-                        <div class="tags">
-                            <span>${item.sector}</span>
-                            <span>${item.stage}</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="funding-details">
-                            <div>
-                                <span>Role Type</span>
-                                <strong>${item.role}</strong>
-                            </div>
-                            <div>
-                                <span>Focus Stage</span>
-                                <strong>${item.stage}</strong>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" style="width:100%;">Connect with ${item.name}</button>
-                    </div>
-                `;
-
-                card.querySelector("button").addEventListener("click", () => {
-                    showNotification(`✨ Connection request sent to ${item.name} (${item.company})!`);
-                });
-
-                container.appendChild(card);
-            });
-        }
-
-        function filterDirectory() {
-            const search = document.getElementById("businessSearch").value.toLowerCase().trim();
-            const role = document.getElementById("roleFilter").value.toLowerCase();
-            const category = document.getElementById("categoryFilter").value.toLowerCase();
-            const stage = document.getElementById("stageFilter").value.toLowerCase();
-
-            const filtered = growFundDirectory.filter(item => {
-                const matchesSearch = 
-                    item.name.toLowerCase().includes(search) || 
-                    item.company.toLowerCase().includes(search) || 
-                    item.location.toLowerCase().includes(search) || 
-                    item.sector.toLowerCase().includes(search);
-
-                const matchesRole = !role || item.role.toLowerCase() === role;
-                const matchesCategory = !category || item.sector.toLowerCase().includes(category);
-                const matchesStage = !stage || item.stage.toLowerCase() === stage;
-
-                return matchesSearch && matchesRole && matchesCategory && matchesStage;
-            });
-
-            renderDirectory(filtered);
-        }
-
-        document.getElementById("businessSearch").addEventListener("input", filterDirectory);
-        document.getElementById("roleFilter").addEventListener("change", filterDirectory);
-        document.getElementById("categoryFilter").addEventListener("change", filterDirectory);
-        document.getElementById("stageFilter").addEventListener("change", filterDirectory);
-
-        renderDirectory(growFundDirectory);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
