@@ -1,6 +1,5 @@
-
 /* =========================================
-   GRO​​WFUND - INVESTMENT HUB
+   GROWFUND - INVESTMENT HUB
    Main Stylesheet
 ========================================= */
 
@@ -20,6 +19,7 @@
     --border: #e5eae5;
     --success: #258653;
     --warning: #e5a23b;
+    --error: #c93b3b;
 
     --shadow: 0 12px 35px rgba(25, 55, 38, 0.07);
 
@@ -70,6 +70,32 @@ button {
 
 .section {
     padding: 90px 0;
+}
+
+
+/* ---------- NOTIFICATION TOAST ---------- */
+
+.notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    display: none;
+    padding: 14px 20px;
+    border-radius: 10px;
+    background: var(--primary-dark);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+}
+
+.notification.success {
+    background: var(--success);
+}
+
+.notification.error {
+    background: var(--error);
 }
 
 
@@ -981,3 +1007,4 @@ button {
     }
 
 }
+```[cite: 2]
