@@ -1,388 +1,1010 @@
+/* =========================================
+   GROWFUND - INVESTMENT HUB
+   Main Stylesheet
+========================================= */
 
-/* ==========================================
-   GRO​​WFUND - JAVASCRIPT
-   Frontend functionality and Java API
-========================================== */
+/* ---------- ROOT VARIABLES ---------- */
 
-const API_URL = "http://localhost:8080/api";
+:root {
+    --primary: #246b50;
+    --primary-dark: #174b38;
+    --primary-light: #e8f3ed;
+
+    --background: #f8f9f6;
+    --surface: #ffffff;
+
+    --text: #182820;
+    --muted: #77827a;
+
+    --border: #e5eae5;
+    --success: #258653;
+    --warning: #e5a23b;
+    --error: #c93b3b;
+
+    --shadow: 0 12px 35px rgba(25, 55, 38, 0.07);
+
+    --radius: 16px;
+    --transition: all 0.3s ease;
+}
 
 
-// ==========================================
-// 1. NOTIFICATION SYSTEM
-// ==========================================
+/* ---------- GLOBAL RESET ---------- */
 
-function showNotification(message, type = "success") {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    let notification = document.getElementById("notification");
+html {
+    scroll-behavior: smooth;
+}
 
-    if (!notification) {
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
 
-        notification = document.createElement("div");
-        notification.id = "notification";
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
-        document.body.appendChild(notification);
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: min(1180px, 90%);
+    margin: auto;
+}
+
+.section {
+    padding: 90px 0;
+}
+
+
+/* ---------- NOTIFICATION TOAST ---------- */
+
+.notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    display: none;
+    padding: 14px 20px;
+    border-radius: 10px;
+    background: var(--primary-dark);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+}
+
+.notification.success {
+    background: var(--success);
+}
+
+.notification.error {
+    background: var(--error);
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 12px 21px;
+
+    border-radius: 9px;
+    border: 1px solid transparent;
+
+    font-weight: 600;
+    font-size: 14px;
+
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border-color: var(--border);
+    background: white;
+    color: var(--text);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-light {
+    background: white;
+    color: var(--primary-dark);
+}
+
+.btn-dark {
+    background: #182820;
+    color: white;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #66716a;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* ---------- HERO SECTION ---------- */
+
+.hero {
+    padding: 100px 0;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            #e2f0e5 0,
+            transparent 35%
+        ),
+        linear-gradient(120deg, #f8faf7, #eef5ef);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 75px;
+}
+
+.eyebrow {
+    display: inline-block;
+
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    max-width: 650px;
+
+    font-size: clamp(42px, 5.5vw, 68px);
+    line-height: 1.08;
+
+    letter-spacing: -3px;
+    margin-bottom: 25px;
+}
+
+.hero-content > p {
+    max-width: 530px;
+
+    font-size: 17px;
+    color: var(--muted);
+
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 45px;
+
+    margin-top: 55px;
+}
+
+.hero-stats h3 {
+    font-size: 25px;
+    color: var(--primary);
+}
+
+.hero-stats p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* ---------- HERO FEATURE CARD ---------- */
+
+.hero-card {
+    background: white;
+
+    padding: 32px;
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    box-shadow: var(--shadow);
+
+    transition: var(--transition);
+}
+
+.hero-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-label {
+    display: inline-block;
+
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+
+    margin-bottom: 25px;
+}
+
+.business-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.business-heading h2 {
+    font-size: 23px;
+}
+
+.business-heading p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.business-avatar {
+    min-width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    background: #dcefe2;
+    color: var(--primary);
+
+    border-radius: 14px;
+    font-weight: 800;
+}
+
+.business-description {
+    color: var(--muted);
+    font-size: 14px;
+
+    margin: 22px 0;
+}
+
+.funding-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin: 20px 0 12px;
+}
+
+.funding-details span {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.funding-details h3,
+.funding-details strong {
+    font-size: 17px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+    border-radius: 20px;
+
+    background: #e9eee9;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 20px;
+}
+
+.progress-text {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+
+/* ---------- FEATURES ---------- */
+
+.features {
+    padding: 60px 0;
+    background: white;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.feature-card {
+    padding: 15px;
+}
+
+.feature-card span {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    margin: 12px 0;
+}
+
+.feature-card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+
+/* ---------- SECTION HEADINGS ---------- */
+
+.section-heading {
+    margin-bottom: 40px;
+}
+
+.section-heading h2 {
+    font-size: clamp(28px, 4vw, 39px);
+    letter-spacing: -1.5px;
+    margin-bottom: 12px;
+}
+
+.section-heading p {
+    max-width: 550px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+
+/* ---------- MARKETPLACE ---------- */
+
+.marketplace {
+    background: #f8faf7;
+}
+
+.marketplace-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.marketplace-toolbar input,
+.marketplace-toolbar select {
+    flex: 1;
+    min-width: 180px;
+
+    padding: 13px 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: white;
+    outline: none;
+}
+
+.marketplace-toolbar input:focus,
+.marketplace-toolbar select:focus {
+    border-color: var(--primary);
+}
+
+.business-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+
+/* ---------- BUSINESS CARDS ---------- */
+
+.business-card {
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.025);
+
+    transition: var(--transition);
+}
+
+.business-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
+
+.business-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.pink {
+    background: #f8e5e9;
+    color: #a34360;
+}
+
+.green {
+    background: #e1eee0;
+    color: #427548;
+}
+
+.status {
+    padding: 5px 11px;
+
+    background: #e8f4eb;
+    color: var(--success);
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.business-card h3 {
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.founder-name {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.tags span {
+    background: #f0f3f0;
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    color: #66716a;
+}
+
+.business-card .btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+/* ---------- ROLE SECTION ---------- */
+
+.role-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.role-card {
+    padding: 55px 40px;
+    border-radius: 20px;
+}
+
+.investor-card {
+    background: #e5f1e7;
+}
+
+.founder-card {
+    background: #e8e9e2;
+}
+
+.role-card h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.role-card p {
+    max-width: 400px;
+    color: #68756c;
+    margin-bottom: 30px;
+}
+
+
+/* ---------- FOUNDER DASHBOARD ---------- */
+
+.founder-dashboard {
+    background: #f8faf7;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 25px;
+    align-items: start;
+}
+
+.dashboard-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+.metric-card {
+    background: white;
+    border: 1px solid var(--border);
+
+    padding: 18px;
+    border-radius: 12px;
+}
+
+.metric-card span {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.metric-card h3 {
+    font-size: 25px;
+    color: var(--primary);
+    margin: 7px 0;
+}
+
+.metric-card p {
+    font-size: 10px;
+    color: var(--muted);
+}
+
+
+/* ---------- FORM ---------- */
+
+.form-card {
+    padding: 30px;
+
+    background: white;
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+}
+
+.form-card h3 {
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-card label {
+    display: block;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    margin-bottom: 18px;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+    width: 100%;
+
+    display: block;
+    margin-top: 8px;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    outline: none;
+    background: white;
+
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(36, 107, 80, 0.08);
+}
+
+.form-card textarea {
+    resize: vertical;
+}
+
+.form-card button {
+    margin-top: 10px;
+}
+
+
+/* ---------- DASHBOARD SIDEBAR ---------- */
+
+.dashboard-sidebar {
+    display: grid;
+    gap: 18px;
+}
+
+.advice-card,
+.preview-card {
+    padding: 25px;
+
+    background: white;
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+}
+
+.advice-card {
+    background: #e8f2e9;
+}
+
+.advice-card h3,
+.preview-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.advice-card p,
+.preview-card p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+
+/* ---------- INTEREST SECTION ---------- */
+
+.interest-section {
+    background: white;
+}
+
+.interest-card {
+    padding: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.interest-card h3 {
+    font-size: 18px;
+}
+
+.interest-card p {
+    color: var(--muted);
+    font-size: 13px;
+    max-width: 450px;
+}
+
+.interest-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+    padding: 55px 0;
+    background: #172c21;
+    color: white;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.footer .logo-icon {
+    background: white;
+    color: var(--primary);
+}
+
+.footer-content p,
+.footer-content > span {
+    color: #bdc9c0;
+    font-size: 12px;
+}
+
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
-    notification.textContent = message;
-    notification.className = "notification " + type;
-
-    notification.style.display = "block";
-
-    clearTimeout(notification.timer);
-
-    notification.timer = setTimeout(() => {
-        notification.style.display = "none";
-    }, 3500);
-}
-
-
-// ==========================================
-// 2. CHECK JAVA SERVER
-// ==========================================
-
-async function checkServer() {
-
-    try {
-
-        const response = await fetch(`${API_URL}/status`);
-
-        if (!response.ok) {
-            throw new Error("Server unavailable");
-        }
-
-        const data = await response.json();
-
-        console.log("GrowFund Server:", data.status);
-
-    } catch (error) {
-
-        console.warn("Java backend is not connected.");
-
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-
-// ==========================================
-// 3. BUSINESS REGISTRATION
-// ==========================================
-
-const businessForm = document.getElementById("businessForm");
-
-if (businessForm) {
-
-    businessForm.addEventListener("submit", async function(event) {
-
-        event.preventDefault();
-
-        const submitButton = businessForm.querySelector(
-            'button[type="submit"]'
-        );
-
-        const originalText = submitButton.textContent;
-
-        submitButton.disabled = true;
-        submitButton.textContent = "Registering...";
-
-        try {
-
-            const formData = new FormData(businessForm);
-
-            const data = new URLSearchParams();
-
-            for (const [key, value] of formData.entries()) {
-                data.append(key, value);
-            }
-
-            const response = await fetch(`${API_URL}/business`, {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-
-                body: data.toString()
-
-            });
-
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(result.error || "Registration failed");
-            }
-
-            showNotification(
-                "Business registered successfully!"
-            );
-
-            businessForm.reset();
-
-            await loadBusinesses();
-
-        } catch (error) {
-
-            showNotification(
-                error.message || "Unable to register business.",
-                "error"
-            );
-
-            console.error(error);
-
-        } finally {
-
-            submitButton.disabled = false;
-            submitButton.textContent = originalText;
-
-        }
-
-    });
-
+.hero-content,
+.hero-card {
+    animation: fadeUp 0.7s ease both;
 }
 
 
-// ==========================================
-// 4. LOAD REGISTERED BUSINESSES
-// ==========================================
+/* ---------- TABLET RESPONSIVE ---------- */
 
-async function loadBusinesses() {
+@media (max-width: 1000px) {
 
-    try {
+    .hero-grid {
+        grid-template-columns: 1fr 0.9fr;
+        gap: 30px;
+    }
 
-        const response = await fetch(`${API_URL}/businesses`);
+    .business-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-        if (!response.ok) {
-            throw new Error("Could not load businesses");
-        }
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
 
-        const businesses = await response.json();
-
-        console.log("Registered businesses:", businesses);
-
-        renderBusinesses(businesses);
-
-    } catch (error) {
-
-        console.warn("Unable to load registered businesses.");
-
+    .dashboard-metrics {
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
 
 
-// ==========================================
-// 5. DISPLAY BUSINESS INFORMATION
-// ==========================================
+/* ---------- MOBILE RESPONSIVE ---------- */
 
-function renderBusinesses(businesses) {
+@media (max-width: 700px) {
 
-    const businessContainer = document.getElementById("businesses");
+    .container {
+        width: 92%;
+    }
 
-    if (!businessContainer) return;
+    .section {
+        padding: 60px 0;
+    }
 
-    // Keep the original demonstration cards.
-    // Add registered businesses without replacing them.
+    .navbar {
+        flex-wrap: wrap;
+        padding: 15px 0;
+    }
 
-    const oldDynamicCards = businessContainer.querySelectorAll(
-        ".dynamic-business-card"
-    );
+    .nav-links {
+        order: 3;
+        width: 100%;
 
-    oldDynamicCards.forEach(card => card.remove());
+        justify-content: center;
+        gap: 18px;
+    }
 
-    businesses.forEach(business => {
+    .nav-links a {
+        font-size: 11px;
+    }
 
-        const card = document.createElement("article");
+    .nav-actions {
+        gap: 6px;
+    }
 
-        card.className = "business-card dynamic-business-card";
+    .nav-actions .btn {
+        padding: 9px 11px;
+        font-size: 11px;
+    }
 
-        const avatar = document.createElement("div");
-        avatar.className = "business-avatar";
+    .hero {
+        padding: 65px 0;
+    }
 
-        avatar.textContent = (
-            business.name || "B"
-        ).substring(0, 2).toUpperCase();
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
 
-        const title = document.createElement("h3");
-        title.textContent = business.name || "New Business";
+    .hero h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
+    }
 
-        const founder = document.createElement("p");
-        founder.className = "founder-name";
-        founder.textContent = business.founder || "Founder";
+    .hero-content > p {
+        font-size: 14px;
+    }
 
-        const description = document.createElement("p");
-        description.className = "business-description";
-        description.textContent =
-            "A newly registered GrowFund business.";
+    .hero-stats {
+        gap: 25px;
+    }
 
-        const button = document.createElement("button");
-        button.className = "btn btn-primary connect-btn";
-        button.textContent = "Connect with Founder";
+    .hero-stats h3 {
+        font-size: 21px;
+    }
 
-        button.addEventListener("click", () => {
-            showNotification(
-                "Business selected: " + (business.name || "Business")
-            );
-        });
+    .hero-card {
+        padding: 24px;
+    }
 
-        card.append(
-            avatar,
-            title,
-            founder,
-            description,
-            button
-        );
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 
-        businessContainer.appendChild(card);
+    .business-grid {
+        grid-template-columns: 1fr;
+    }
 
-    });
+    .role-grid {
+        grid-template-columns: 1fr;
+    }
 
-}
+    .role-card {
+        padding: 35px 25px;
+    }
 
+    .role-card h2 {
+        font-size: 29px;
+    }
 
-// ==========================================
-// 6. BUSINESS SEARCH
-// ==========================================
+    .dashboard-metrics {
+        grid-template-columns: 1fr 1fr;
+    }
 
-const searchInput = document.getElementById("businessSearch");
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 
-if (searchInput) {
+    .form-card {
+        padding: 20px;
+    }
 
-    searchInput.addEventListener("input", filterBusinesses);
+    .interest-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 
-}
-
-
-// ==========================================
-// 7. CATEGORY FILTER
-// ==========================================
-
-const categoryFilter = document.getElementById("categoryFilter");
-
-if (categoryFilter) {
-
-    categoryFilter.addEventListener("change", filterBusinesses);
-
-}
-
-
-// ==========================================
-// 8. FUNDING STAGE FILTER
-// ==========================================
-
-const stageFilter = document.getElementById("stageFilter");
-
-if (stageFilter) {
-
-    stageFilter.addEventListener("change", filterBusinesses);
-
-}
-
-
-// ==========================================
-// 9. FILTER BUSINESS CARDS
-// ==========================================
-
-function filterBusinesses() {
-
-    const search = searchInput
-        ? searchInput.value.toLowerCase().trim()
-        : "";
-
-    const category = categoryFilter
-        ? categoryFilter.value.toLowerCase()
-        : "";
-
-    const stage = stageFilter
-        ? stageFilter.value.toLowerCase()
-        : "";
-
-    const cards = document.querySelectorAll(".business-card");
-
-    cards.forEach(card => {
-
-        const text = card.textContent.toLowerCase();
-
-        const matchesSearch = text.includes(search);
-
-        const matchesCategory =
-            !category || text.includes(category);
-
-        const matchesStage =
-            !stage || text.includes(stage);
-
-        card.style.display =
-            matchesSearch && matchesCategory && matchesStage
-                ? ""
-                : "none";
-
-    });
+    .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 
 }
 
 
-// ==========================================
-// 10. CONNECT WITH FOUNDER
-// ==========================================
+/* ---------- SMALL MOBILE ---------- */
 
-document.addEventListener("click", function(event) {
+@media (max-width: 380px) {
 
-    const button = event.target.closest(".connect-btn");
+    .hero h1 {
+        font-size: 35px;
+    }
 
-    if (!button) return;
+    .nav-links {
+        gap: 10px;
+    }
 
-    const card = button.closest(".business-card");
+    .nav-links a {
+        font-size: 10px;
+    }
 
-    const businessName = card
-        ? card.querySelector("h3")?.textContent
-        : "Business";
+    .dashboard-metrics {
+        grid-template-columns: 1fr;
+    }
 
-    showNotification(
-        `Connection request for ${businessName}. Backend integration pending.`
-    );
-
-});
-
-
-// ==========================================
-// 11. INVESTOR INTEREST BUTTONS
-// ==========================================
-
-const interestButtons = document.querySelectorAll(
-    ".interest-actions button"
-);
-
-interestButtons.forEach((button, index) => {
-
-    button.addEventListener("click", function() {
-
-        if (index === 0) {
-
-            showNotification(
-                "Conversation feature will be available soon."
-            );
-
-        } else {
-
-            showNotification(
-                "Interest marked for later."
-            );
-
-        }
-
-    });
-
-});
-
-
-// ==========================================
-// 12. INITIALIZE APPLICATION
-// ==========================================
-
-document.addEventListener("DOMContentLoaded", function() {
-
-    console.log("GrowFund Application Initialized");
-
-    checkServer();
-
-    loadBusinesses();
-
-});
+}
+```[cite: 2]
