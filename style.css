@@ -464,17 +464,15 @@ button {
 }
 
 .marketplace-toolbar {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
     gap: 12px;
     margin-bottom: 30px;
 }
 
 .marketplace-toolbar input,
 .marketplace-toolbar select {
-    flex: 1;
-    min-width: 180px;
-
+    width: 100%;
     padding: 13px 15px;
 
     border: 1px solid var(--border);
@@ -482,6 +480,7 @@ button {
 
     background: white;
     outline: none;
+    font-size: 14px;
 }
 
 .marketplace-toolbar input:focus,
@@ -857,6 +856,10 @@ button {
         gap: 30px;
     }
 
+    .marketplace-toolbar {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .business-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -944,6 +947,10 @@ button {
         gap: 20px;
     }
 
+    .marketplace-toolbar {
+        grid-template-columns: 1fr;
+    }
+
     .business-grid {
         grid-template-columns: 1fr;
     }
@@ -1007,4 +1014,3 @@ button {
     }
 
 }
-```[cite: 2]
