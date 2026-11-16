@@ -12,7 +12,6 @@ public class Main {
     private static final List> businesses =
             new ArrayList<>();
 
-    // Static block to preload 50 entries of investors and entrepreneurs
     static {
         String[][] rawData = {
             {"Daybreak Foods", "Amara Okafor", "Entrepreneur", "Food & Beverage", "Seed", "Oakland, CA"},
@@ -85,13 +84,11 @@ public class Main {
                 new InetSocketAddress(8080), 0
         );
 
-        // Home API
         server.createContext("/api/status", exchange -> {
             sendResponse(exchange, 200,
                     "{\"status\":\"online\",\"app\":\"GrowFund\"}");
         });
 
-        // Business registration API
         server.createContext("/api/business", exchange -> {
 
             if (!exchange.getRequestMethod().equals("POST")) {
@@ -133,7 +130,6 @@ public class Main {
             }
         });
 
-        // View registered businesses / preloaded directory
         server.createContext("/api/businesses", exchange -> {
 
             StringBuilder json = new StringBuilder("[");
@@ -173,13 +169,12 @@ public class Main {
         server.start();
 
         System.out.println("------------------------------");
-        System.out.println("   GROWFUND SERVER ONLINE");
+        System.out.println("    GROWFUND SERVER ONLINE");
         System.out.println("------------------------------");
         System.out.println("Server: http://localhost:8080");
         System.out.println("API: http://localhost:8080/api/status");
     }
 
-    // Parse HTML form data
     private static Map<String, String> parseForm(String body)
             throws UnsupportedEncodingException {
 
@@ -203,7 +198,6 @@ public class Main {
         return result;
     }
 
-    // Send HTTP response
     private static void sendResponse(
             HttpExchange exchange,
             int status,
@@ -227,7 +221,6 @@ public class Main {
         }
     }
 
-    // Escape JSON strings
     private static String escapeJson(String value) {
 
         if (value == null) return "";
@@ -238,4 +231,3 @@ public class Main {
                     .replace("\r", "\\r");
     }
 }
-```[cite: 3]
